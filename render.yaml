@@ -24,3 +24,9 @@ services:
         value: "*" # You can restrict this later to your-app.onrender.com
       - key: PYTHON_VERSION
         value: 3.12.9
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: admin
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: admin123
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: admin@example.com
