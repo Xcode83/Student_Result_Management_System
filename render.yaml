@@ -1,0 +1,24 @@
+databases:
+  - name: student-result-db
+    plan: free
+    databaseName: student_result_db
+    user: student_result_user
+
+services:
+  - type: web
+    name: student-result-management
+    plan: free
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn core.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: student-result-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*" # You can restrict this later to your-app.onrender.com
