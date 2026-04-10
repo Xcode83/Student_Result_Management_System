@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Classes - EduResult{% endblock %}
+
+{% block content %}
+<div class="animate-fade">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="nav-logo">Manage Classes</h1>
+            <p class="text-muted">Total Classes: {{ studentclass_list.count }}</p>
+        </div>
+        <a href="{% url 'class_add' %}" class="btn-primary text-decoration-none">
+            <i class="fa-solid fa-plus me-2"></i> Add Class
+        </a>
+    </div>
+
+    <div class="glass-card">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cls in studentclass_list %}
+                    <tr>
+                        <td class="fw-bold">{{ cls.class_name }}</td>
+                        <td>{{ cls.section }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2" class="text-center text-muted py-5">No classes found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

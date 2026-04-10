@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page {
+            size: a4 portrait;
+            margin: 2cm;
+        }
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #000000;
+            background-color: #ffffff;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #6366f1;
+            margin: 0;
+            font-size: 28px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            background-color: #f1f5f9;
+            padding: 8px 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-left: 4px solid #6366f1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f8fafc;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+        .result-summary {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #6366f1;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .percentage {
+            font-size: 32px;
+            font-weight: bold;
+            color: #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>EDURESULT ACADEMIC RECORD</h1>
+        <p>Institutional Grade Management System</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">STUDENT INFORMATION</div>
+        <table>
+            <tr>
+                <th width="30%">Full Name</th>
+                <td>{{ student.full_name }}</td>
+            </tr>
+            <tr>
+                <th>Roll Number</th>
+                <td>{{ student.roll_number }}</td>
+            </tr>
+            <tr>
+                <th>Class & Section</th>
+                <td>{{ student.student_class }}</td>
+            </tr>
+            <tr>
+                <th>Email Address</th>
+                <td>{{ student.email }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">ACADEMIC PERFORMANCE</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Code</th>
+                    <th>Marks</th>
+                    <th>Max</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in results %}
+                <tr>
+                    <td>{{ res.subject.subject_name }}</td>
+                    <td>{{ res.subject.subject_code }}</td>
+                    <td>{{ res.marks_obtained }}</td>
+                    <td>100</td>
+                    <td>{{ res.get_grade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr style="font-weight: bold; background-color: #f8fafc;">
+                    <td colspan="2" style="text-align: right;">AGGREGATE TOTAL</td>
+                    <td>{{ total_marks }}</td>
+                    <td>{{ max_marks }}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="result-summary">
+        <p style="margin: 0; font-size: 14px;">OVERALL PERFORMANCE PERCENTAGE</p>
+        <div class="percentage">{{ percentage }}%</div>
+        <p style="margin: 10px 0 0 0;">Result Status: <strong>{% if percentage >= 50 %}PASSED{% else %}FAILED{% endif %}</strong></p>
+    </div>
+
+    <div class="footer">
+        <p>This is a computer-generated report and does not require a physical signature.</p>
+        <p>&copy; 2026 EduResult Institution Board. All Rights Reserved.</p>
+    </div>
+</body>
+</html>

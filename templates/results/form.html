@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title|default:"Manage" }} - EduResult{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center animate-fade">
+    <div class="col-md-8">
+        <div class="glass-card">
+            <h2 class="mb-4 nav-logo">{{ title|default:"Form Entry" }}</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn-primary py-2 px-5">
+                        <i class="fa-solid fa-check me-2"></i> Save Data
+                    </button>
+                    <a href="javascript:history.back()" class="btn btn-outline-light px-5 py-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

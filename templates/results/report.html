@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Result Report - {{ student.full_name }}{% endblock %}
+
+{% block content %}
+<div class="animate-fade">
+    <div class="text-center mb-5">
+        <h1 class="nav-logo display-5">Academic Performance Report</h1>
+        <p class="text-muted">Generated on {% now "F j, Y" %}</p>
+    </div>
+
+    <div class="glass-card mb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-accent mb-3"><i class="fa-solid fa-user me-2"></i> Student Details</h5>
+                <p class="mb-1"><strong>Name:</strong> {{ student.full_name }}</p>
+                <p class="mb-1"><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+                <p class="mb-1"><strong>Email:</strong> {{ student.email }}</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5 class="text-accent mb-3"><i class="fa-solid fa-school me-2"></i> Class Details</h5>
+                <p class="mb-1"><strong>Class:</strong> {{ student.student_class.class_name }}</p>
+                <p class="mb-1"><strong>Section:</strong> {{ student.student_class.section }}</p>
+                <div class="mt-4">
+                    <a href="{% url 'generate_report' student.roll_number %}" class="btn-primary text-decoration-none">
+                        <i class="fa-solid fa-file-pdf me-2"></i> Download PDF Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card mb-4">
+        <h4 class="mb-4">Subject-wise Marks</h4>
+        <div class="table-responsive">
+            <table class="table table-dark border-light">
+                <thead>
+                    <tr class="border-bottom">
+                        <th>Subject Name</th>
+                        <th>Subject Code</th>
+                        <th>Marks Obtained</th>
+                        <th>Maximum Marks</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for res in results %}
+                    <tr>
+                        <td>{{ res.subject.subject_name }}</td>
+                        <td><code>{{ res.subject.subject_code }}</code></td>
+                        <td>{{ res.marks_obtained }}</td>
+                        <td>100</td>
+                        <td><span class="badge bg-primary px-3 py-2">{{ res.get_grade }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="border-top">
+                    <tr class="fw-bold">
+                        <td colspan="2" class="text-end">Total Aggregate:</td>
+                        <td>{{ total_marks }}</td>
+                        <td>{{ max_marks }}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="glass-card text-center" style="border: 2px solid var(--primary);">
+                <h2 class="mb-0">Overall Percentage: <span class="nav-logo">{{ percentage }}%</span></h2>
+                <p class="text-muted mt-2">Status: {% if percentage >= 50 %}<span class="text-success fw-bold">PASSED</span>{% else %}<span class="text-danger fw-bold">FAILED</span>{% endif %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

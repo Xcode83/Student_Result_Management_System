@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Subjects - EduResult{% endblock %}
+
+{% block content %}
+<div class="animate-fade">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="nav-logo">Manage Subjects</h1>
+            <p class="text-muted">Total Subjects: {{ subject_list.count }}</p>
+        </div>
+        <a href="{% url 'subject_add' %}" class="btn-primary text-decoration-none">
+            <i class="fa-solid fa-plus me-2"></i> Add Subject
+        </a>
+    </div>
+
+    <div class="glass-card">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Subject Code</th>
+                        <th>Subject Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub in subject_list %}
+                    <tr>
+                        <td><code>{{ sub.subject_code }}</code></td>
+                        <td class="fw-bold">{{ sub.subject_name }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2" class="text-center text-muted py-5">No subjects found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

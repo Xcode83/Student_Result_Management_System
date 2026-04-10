@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - EduResult{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="col-md-6 text-center animate-fade">
+        <h1 class="display-3 fw-bold mb-4 nav-logo" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Search Student Result</h1>
+        <p class="text-muted mb-5 fs-5">Enter your unique Roll Number assigned by the college to view your marksheet and download the PDF report.</p>
+        
+        <div class="glass-card">
+            <form action="{% url 'student_search' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-transparent border-end-0" style="border-color: var(--border);"><i class="fa-solid fa-id-card text-muted"></i></span>
+                    <input type="text" name="roll_number" class="form-control bg-transparent text-white border-start-0" placeholder="e.g. ROLL123" required style="border-color: var(--border);">
+                </div>
+                <button type="submit" class="btn-primary w-100 py-3 shadow-lg">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i> Find My Result
+                </button>
+            </form>
+        </div>
+        
+        <div class="mt-4">
+            <p class="text-muted small"><i class="fa-solid fa-info-circle me-1"></i> Results are calculated automatically based on the latest semester marks.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Results - EduResult{% endblock %}
+
+{% block content %}
+<div class="animate-fade">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="nav-logo">Manage Results</h1>
+            <p class="text-muted">Total Marks Declared: {{ results.count }}</p>
+        </div>
+        <a href="{% url 'result_add' %}" class="btn-primary text-decoration-none">
+            <i class="fa-solid fa-plus me-2"></i> Declare Result
+        </a>
+    </div>
+
+    <div class="glass-card">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Grade</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td>{{ result.student.full_name }} ({{ result.student.roll_number }})</td>
+                        <td>{{ result.subject.subject_name }}</td>
+                        <td>{{ result.marks_obtained }} / 100</td>
+                        <td><span class="badge bg-primary px-3 py-2">{{ result.get_grade }}</span></td>
+                        <td class="text-end">
+                            <a href="{% url 'result_edit' result.pk %}" class="btn btn-sm btn-outline-primary me-2"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{% url 'result_delete' result.pk %}" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-5">No results found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

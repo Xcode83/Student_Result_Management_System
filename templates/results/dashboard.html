@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - EduResult{% endblock %}
+
+{% block content %}
+<div class="animate-fade">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h1 class="nav-logo">Overview & Statistics</h1>
+            <p class="text-muted">Welcome back, {{ user.username }}. Here's the current snapshot of the institution.</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="glass-card text-center">
+                <i class="fa-solid fa-user-graduate fa-3x mb-3" style="color: var(--primary);"></i>
+                <h3>{{ total_students }}</h3>
+                <p class="text-muted">Total Students</p>
+                <a href="{% url 'student_list' %}" class="btn btn-outline-light btn-sm mt-2">Manage Students</a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="glass-card text-center">
+                <i class="fa-solid fa-school fa-3x mb-3" style="color: var(--accent);"></i>
+                <h3>{{ total_classes }}</h3>
+                <p class="text-muted">Active Classes</p>
+                <a href="{% url 'class_list' %}" class="btn btn-outline-light btn-sm mt-2">Manage Classes</a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="glass-card text-center">
+                <i class="fa-solid fa-book fa-3x mb-3" style="color: #f59e0b;"></i>
+                <h3>{{ total_subjects }}</h3>
+                <p class="text-muted">Total Subjects</p>
+                <a href="{% url 'subject_list' %}" class="btn btn-outline-light btn-sm mt-2">Manage Subjects</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3>Recent Results Declared</h3>
+                    <a href="{% url 'result_add' %}" class="btn-primary btn-sm text-decoration-none">
+                        <i class="fa-solid fa-plus me-1"></i> Add New Result
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for res in recent_results %}
+                            <tr>
+                                <td>{{ res.student.full_name }}</td>
+                                <td>{{ res.subject.subject_name }}</td>
+                                <td>{{ res.marks_obtained }} / 100</td>
+                                <td><span class="badge bg-primary">{{ res.get_grade }}</span></td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">No results found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="glass-card">
+                <h3>Quick Actions</h3>
+                <div class="list-group list-group-flush mt-3 bg-transparent">
+                    <a href="{% url 'student_add' %}" class="list-group-item list-group-item-action bg-transparent text-white border-bottom border-light">
+                        <i class="fa-solid fa-user-plus me-2 text-primary"></i> Add Student
+                    </a>
+                    <a href="{% url 'class_add' %}" class="list-group-item list-group-item-action bg-transparent text-white border-bottom border-light">
+                        <i class="fa-solid fa-plus-circle me-2 text-accent"></i> Add Class
+                    </a>
+                    <a href="{% url 'subject_add' %}" class="list-group-item list-group-item-action bg-transparent text-white border-bottom border-light">
+                        <i class="fa-solid fa-book-medical me-2 text-warning"></i> Add Subject
+                    </a>
+                    <a href="{% url 'result_list' %}" class="list-group-item list-group-item-action bg-transparent text-white border-0">
+                        <i class="fa-solid fa-file-invoice me-2 text-info"></i> View All Results
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
