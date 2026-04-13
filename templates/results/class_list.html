@@ -21,6 +21,7 @@
                     <tr>
                         <th>Class Name</th>
                         <th>Section</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +29,18 @@
                     <tr>
                         <td class="fw-bold">{{ cls.class_name }}</td>
                         <td>{{ cls.section }}</td>
+                        <td class="text-end">
+                            <a href="{% url 'class_edit' cls.pk %}" class="btn-icon me-2" title="Edit Class">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'class_delete' cls.pk %}" class="btn-icon text-danger" title="Delete Class">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="2" class="text-center text-muted py-5">No classes found.</td>
+                        <td colspan="3" class="text-center text-muted py-5">No classes found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

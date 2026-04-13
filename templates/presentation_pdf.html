@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page {
+            size: a4 landscape;
+            margin: 0;
+        }
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+        .slide {
+            width: 29.7cm;
+            height: 21cm;
+            padding: 1.5cm;
+            box-sizing: border-box;
+            page-break-after: always;
+            position: relative;
+        }
+        .slide-header {
+            margin-bottom: 25px;
+            border-left: 6px solid #3d5afe;
+            padding-left: 20px;
+        }
+        .slide-header h1 {
+            color: #3d5afe;
+            margin: 0;
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .slide-header p {
+            color: #64748b;
+            margin: 5px 0 0 0;
+            font-size: 18px;
+            font-style: italic;
+        }
+        .content-split {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .story-text {
+            width: 40%;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #334155;
+            text-align: justify;
+        }
+        .visual-display {
+            width: 55%;
+            text-align: center;
+        }
+        .visual-display img {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .badge {
+            background: #e0e7ff;
+            color: #3d5afe;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .title-slide {
+            text-align: center;
+            background: #0f172a;
+            color: white;
+            padding-top: 5cm;
+        }
+        .title-slide h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #3d5afe;
+        }
+        .accent-line {
+            width: 100px;
+            height: 4px;
+            background: #3d5afe;
+            margin: 30px auto;
+        }
+        footer {
+            position: absolute;
+            bottom: 1cm;
+            left: 1.5cm;
+            right: 1.5cm;
+            font-size: 12px;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+        }
+        .highlight {
+            color: #3d5afe;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: The Vision -->
+    <div class="slide title-slide">
+        <div class="badge" style="background: rgba(61, 90, 254, 0.2); color: #fff;">NEXT-GEN ACADEMICS</div>
+        <h1>STUDENT RESULT MANAGEMENT</h1>
+        <p>Bridging the Gap Between Traditional Education and Digital Innovation</p>
+        <div class="accent-line"></div>
+        <p style="font-size: 18px;">A Journey Through Automation, Design, and Accuracy</p>
+    </div>
+
+    <!-- Slide 2: The Conflict (The Manual Era) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">CHAPTER 01</div>
+            <h1>The Conflict: Theoretical Bottlenecks</h1>
+            <p>"Efficiency is not a luxury, it's a necessity."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>For decades, educational institutions have relied on <span class="highlight">physical ledgers</span> and manual tabulations. This "Manual Era" was characterized by a constant battle against time and accuracy. Teachers spent hundreds of hours calculating averages, while students faced weeks of anxiety waiting for results.</p>
+                <p>The <span class="highlight">human element</span>, while vital in teaching, became a liability in data processing. Calculation errors, illegible handwriting, and physical damage to records led to disputes and data loss. We recognized that the system wasn't just slow—it was fundamentally unsustainable for the modern age.</p>
+            </div>
+            <div class="visual-display" style="padding-top: 40px;">
+                <div style="background: #f8fafc; padding: 40px; border-radius: 12px; border: 2px dashed #cbd5e1;">
+                    <h3 style="color: #64748b;">The Legacy Problem</h3>
+                    <ul style="color: #475569; text-align: left;">
+                        <li>Manual error margins exceeding 5% in massive batches.</li>
+                        <li>Average processing time: 14-21 days post-examination.</li>
+                        <li>Zero redundancy: If a paper ledger is lost, the data is gone forever.</li>
+                        <li>High administrative overhead and paper wastage.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 02</footer>
+    </div>
+
+    <!-- Slide 3: The Transformation (The Solution) -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">CHAPTER 02</div>
+            <h1>The Transformation: Digital Bridges</h1>
+            <p>"Moving from chaos to calculated organization."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>Our project was born from the need to build a <span class="highlight">Digital Bridge</span>. We didn't just want to move data to a screen; we wanted to rethink how results are handled. By utilizing a central database and logic-driven processing, we eliminated the calculation bottleneck entirely.</p>
+                <p>The solution provides a dual-portal approach: a simplified search experience for students and a powerful command center for administrators. This ensures that data is entered once, verified instantly, and delivered globally without the need for manual distribution.</p>
+            </div>
+            <div class="visual-display">
+                <img src="{{ home_img }}" alt="Portal Preview">
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">The Digital Landing Page: Focused, Secure, and Efficient.</p>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 03</footer>
+    </div>
+
+    <!-- Slide 4: Architectural Foundation -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">CHAPTER 03</div>
+            <h1>The Foundation: Engineering Speed</h1>
+            <p>"Powering the story with modern technologies."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>To tell this story of speed, we needed a robust foundation. We chose <span class="highlight">Django (Python)</span> for its unparalleled focus on security and rapid development. Django’s ORM allows us to handle complex queries involving thousands of students with millisecond response times.</p>
+                <p>To make the experience feel "Premium," we implemented a custom CSS architecture that avoids the generic look of templates. Using <span class="highlight">Glassmorphism</span> and HSL colors, the UI feels alive, responsive, and trustworthy—essential for an academic platform.</p>
+            </div>
+            <div class="visual-display">
+                <div style="display: flex; wrap: wrap; gap: 10px;">
+                    <div style="background: #0f172a; color: #fff; padding: 20px; border-radius: 8px; width: 45%;">
+                        <h4 style="color: #3d5afe;">Backend</h4>
+                        <p style="font-size: 14px;">Python & Django 5.x powering all logic and security.</p>
+                    </div>
+                    <div style="background: #3d5afe; color: #fff; padding: 20px; border-radius: 8px; width: 45%;">
+                        <h4 style="color: #fff;">Frontend</h4>
+                        <p style="font-size: 14px;">Premium Vanilla CSS & Bootstrap Utilities.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; background: #f1f5f9; padding: 20px; border-radius: 8px; text-align: left;">
+                    <p style="font-size: 14px; color: #334155;"><strong>Core Logic:</strong> Automated Grade Calculation (O, A+, A, B, C, F) integrated into the Student Model for instant reporting.</p>
+                </div>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 04</footer>
+    </div>
+
+    <!-- Slide 5: The Admin Dashboard -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">CHAPTER 04</div>
+            <h1>The Command Center: Admin Control</h1>
+            <p>"Mastering data at scale."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>The <span class="highlight">Admin Dashboard</span> is where the institution regains control. We designed a high-density control center that gives staff an at-a-glance view of the entire student body. From here, adding subjects, enrolling students, and declaring results takes seconds, not hours.</p>
+                <p>This page solves the problem of <span class="highlight">Data Silos</span>. By unifying classes and results in one interface, we ensure that every administrator can track performance and identify failing patterns before they become systemic issues.</p>
+            </div>
+            <div class="visual-display">
+                <img src="{{ dashboard_img }}" alt="Admin Dashboard">
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">The Command Center: Real-time statistics and rapid CRUD management.</p>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 05</footer>
+    </div>
+
+    <!-- Slide 6: The User Experience -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">CHAPTER 05</div>
+            <h1>Closing the Loop: Student Portals</h1>
+            <p>"Empowerment through transparency."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>The final chapter is the <span class="highlight">Report Generation</span>. For the student, transparency is everything. Our portal generates a mathematically precise performance report that can be exported as an official PDF in a single click.</p>
+                <p>This effectively ends the era of <span class="highlight">Office Queues</span>. Students no longer need to visit the administrative building to check their progress. Instead, they access a high-fidelity, printable report from any device, anywhere in the world.</p>
+            </div>
+            <div class="visual-display">
+                <img src="{{ report_img }}" alt="Result Report">
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 10px;">Detailed Analytics: Every mark, every grade, instantly printable.</p>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 06</footer>
+    </div>
+
+    <!-- Slide 7: Impact & Conclusion -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="badge">FINAL SUMMARY</div>
+            <h1>The Impact: A Future-Proof Solution</h1>
+            <p>"Accuracy is the only acceptable baseline."</p>
+        </div>
+        <div class="content-split">
+            <div class="story-text">
+                <p>By implementing this system, we have solved three critical academic problems: <span class="highlight">Latency</span>, <span class="highlight">Accuracy</span>, and <span class="highlight">Accessibility</span>. Our technology stack ensures that the institution is ready for the future, whether handling 100 students or 10,000.</p>
+                <p>The journey from manual papers to digital dashboards isn't just a technical upgrade—it's an institutional evolution. This Student Result Management System stands as a testament to the power of <span class="highlight">User-Centric Engineering</span>.</p>
+            </div>
+            <div class="visual-display" style="padding-top: 40px;">
+                <div style="background: #0f172a; color: #fff; padding: 40px; border-radius: 12px;">
+                    <h2 style="color: #3d5afe; margin-bottom: 20px;">Project Achievements</h2>
+                    <ul style="text-align: left; line-height: 2;">
+                        <li>🚀 <strong>100%</strong> Automation of CGPA/Grade Logic</li>
+                        <li>🛡️ <strong>Zero</strong> Unauthorized Data Access</li>
+                        <li>📄 <strong>Instant</strong> PDF Report Generation</li>
+                        <li>📱 <strong>100%</strong> Responsive "Premium" UI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <footer>Digital Transformation Journey | Page 07</footer>
+    </div>
+
+</body>
+</html>

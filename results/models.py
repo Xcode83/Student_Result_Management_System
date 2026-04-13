@@ -10,10 +10,11 @@ class StudentClass(models.Model):
 
     class Meta:
         verbose_name_plural = "Student Classes"
+        unique_together = ('class_name', 'section')
 
 class Subject(models.Model):
     subject_code = models.CharField(max_length=20, unique=True)
-    subject_name = models.CharField(max_length=100)
+    subject_name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return f"{self.subject_name} ({self.subject_code})"
@@ -33,6 +34,9 @@ class Result(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     marks_obtained = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
     
+    class Meta:
+        unique_together = ('student', 'subject')
+
     def get_grade(self):
         if self.marks_obtained >= 90: return 'O'
         if self.marks_obtained >= 80: return 'A+'

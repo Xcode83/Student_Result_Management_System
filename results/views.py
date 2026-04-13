@@ -91,6 +91,27 @@ class StudentClassCreateView(LoginRequiredMixin, CreateView):
     template_name = 'results/form.html'
     success_url = reverse_lazy('class_list')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Add New Class"
+        return context
+
+class StudentClassUpdateView(LoginRequiredMixin, UpdateView):
+    model = StudentClass
+    fields = ['class_name', 'section']
+    template_name = 'results/form.html'
+    success_url = reverse_lazy('class_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f"Update Class: {self.object}"
+        return context
+
+class StudentClassDeleteView(LoginRequiredMixin, DeleteView):
+    model = StudentClass
+    template_name = 'results/confirm_delete.html'
+    success_url = reverse_lazy('class_list')
+
 class SubjectListView(LoginRequiredMixin, ListView):
     model = Subject
     template_name = 'results/subject_list.html'
@@ -99,6 +120,27 @@ class SubjectCreateView(LoginRequiredMixin, CreateView):
     model = Subject
     fields = ['subject_code', 'subject_name']
     template_name = 'results/form.html'
+    success_url = reverse_lazy('subject_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Add New Subject"
+        return context
+
+class SubjectUpdateView(LoginRequiredMixin, UpdateView):
+    model = Subject
+    fields = ['subject_code', 'subject_name']
+    template_name = 'results/form.html'
+    success_url = reverse_lazy('subject_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f"Update Subject: {self.object}"
+        return context
+
+class SubjectDeleteView(LoginRequiredMixin, DeleteView):
+    model = Subject
+    template_name = 'results/confirm_delete.html'
     success_url = reverse_lazy('subject_list')
 
 # Search & PDF

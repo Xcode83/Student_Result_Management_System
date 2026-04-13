@@ -21,6 +21,7 @@
                     <tr>
                         <th>Subject Code</th>
                         <th>Subject Name</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,10 +29,18 @@
                     <tr>
                         <td><code>{{ sub.subject_code }}</code></td>
                         <td class="fw-bold">{{ sub.subject_name }}</td>
+                        <td class="text-end">
+                            <a href="{% url 'subject_edit' sub.pk %}" class="btn-icon me-2" title="Edit Subject">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{% url 'subject_delete' sub.pk %}" class="btn-icon text-danger" title="Delete Subject">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="2" class="text-center text-muted py-5">No subjects found.</td>
+                        <td colspan="3" class="text-center text-muted py-5">No subjects found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
