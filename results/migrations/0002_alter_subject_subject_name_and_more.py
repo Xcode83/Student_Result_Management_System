@@ -2,6 +2,37 @@
 
 from django.db import migrations, models
 
+def remove_duplicates(apps, schema_editor):
+    StudentClass = apps.get_model('results', 'StudentClass')
+    Student = apps.get_model('results', 'Student')
+    Subject = apps.get_model('results', 'Subject')
+    Result = apps.get_model('results', 'Result')
+    
+    # Clean StudentClass
+    for entry in StudentClass.objects.values('class_name', 'section').annotate(count=models.Count('id')).filter(count__gt=1):
+        duplicates = StudentClass.objects.filter(class_name=entry['class_name'], section=entry['section']).order_by('id')
+        keep = duplicates[0]
+        others = duplicates[1:]
+        for other in others:
+            Student.objects.filter(student_class=other).update(student_class=keep)
+            other.delete()
+
+    # Clean Subject
+    for entry in Subject.objects.values('subject_name').annotate(count=models.Count('id')).filter(count__gt=1):
+        duplicates = Subject.objects.filter(subject_name=entry['subject_name']).order_by('id')
+        keep = duplicates[0]
+        others = duplicates[1:]
+        for other in others:
+            Result.objects.filter(subject=other).update(subject=keep)
+            other.delete()
+
+    # Clean Result
+    for entry in Result.objects.values('student', 'subject').annotate(count=models.Count('id')).filter(count__gt=1):
+        duplicates = Result.objects.filter(student=entry['student'], subject=entry['subject']).order_by('-id')
+        keep = duplicates[0]
+        others = duplicates[1:]
+        for other in others:
+            other.delete()
 
 class Migration(migrations.Migration):
 
@@ -10,6 +41,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(remove_duplicates, reverse_code=migrations.RunPython.noop),
         migrations.AlterField(
             model_name='subject',
             name='subject_name',
